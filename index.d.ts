@@ -23,10 +23,17 @@ declare module 'react-native-rsa-native' {
 	namespace RSA {
 		export function generate(): Promise<PublicKey>;
 		export function generateKeys(keySize: number): Promise<KeyPair>;
+
 		export function encrypt(data: string, key: string): Promise<string>;
 		export function decrypt(data: string, key: string): Promise<string>;
 		export function encrypt64(data: string, key: string): Promise<string>;
 		export function decrypt64(data: string, key: string): Promise<string>;
+
+		export function encryptPrivate(data: string, privateKey: string): Promise<string>;
+		export function decryptPublic(data: string, publicKey: string): Promise<string>;
+		//export function encryptPrivate64(data: string, privateKey: string): Promise<string>;
+		//export function decryptPublic64(data: string, publicKey: string): Promise<string>;
+
 		export function sign(data: string, key: string): Promise<string>;
 		export function signWithAlgorithm(data: string, key: string, signature?: TypeCrypto): Promise<string>;
 		export function sign64(data: string, key: string): Promise<string>;

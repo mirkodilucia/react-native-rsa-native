@@ -97,6 +97,29 @@ class RNRSA: NSObject {
         let msg = rsa_ec.decrypt64(message: message)
         resolve(msg)
     }
+
+    // New
+    @objc
+    func encryptPrivate(_ message: String ,withKey: String, resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
+        let rsa_ec = RSAECNative()
+        guard let _ = rsa_ec.setPrivateKey(privateKey: withKey) else {
+            resolve(false)
+            return
+        }
+        let msg = rsa_ec.encrypt64(message: message)
+        resolve(msg)
+    }
+    
+    @objc
+    func decryptPublic(_ message: String ,withKey: String, resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
+        let rsa_ec = RSAECNative()
+        guard let _ = rsa_ec.setPublicKey(publicKey: withKey) else {
+            resolve(false)
+            return
+        }
+        let msg = rsa_ec.decrypt64(message: message)
+        resolve(msg)
+    }
     
     @objc
     func verify(_ signature: String, withMessage: String ,withKey: String, resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
